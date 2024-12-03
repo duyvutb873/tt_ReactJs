@@ -1,0 +1,37 @@
+Tổng hợp kiến thức Eventloop
+Event loop thực hiện công việc quản lý giữa Call Stack, Callback Queue, và Web APIs (hoặc các API của môi trường runtime như Node.js)
+
+Call Stack:
+-Là nơi lưu trữ các hàm đang được gọi.
+-Khi một hàm được gọi, nó được đưa vào Call Stack.
+-Khi hàm hoàn thành, nó được loại bỏ khỏi Call Stack.
+
+Web APIs/Node APIs:
+-Đây là nơi thực hiện các tác vụ không đồng bộ, như setTimeout, fetch, hoặc các sự kiện từ trình duyệt (browser events).
+-Sau khi một tác vụ hoàn thành, kết quả (callback) sẽ được đẩy vào Callback Queue.
+
+Callback Queue:
+-Là nơi lưu trữ các hàm callback sẵn sàng để được thực thi.
+-Callback sẽ không được đưa vào Call Stack ngay lập tức, mà phải đợi đến khi Call Stack trống.
+
+Event Loop:
+-Event loop liên tục kiểm tra xem Call Stack có trống hay không.
+-Nếu Call Stack trống và có hàm trong Callback Queue, event loop sẽ đẩy hàm từ Callback Queue vào Call Stack để thực thi.
+
+
+* Macrotask: bao gồm các tác vụ lớn như:
+ - setTimeout
+ - setInterval
+ - setImmediate (trong Node.js)
+ - I/O Events (như đọc/ghi file, xử lý mạng)
+ - UI rendering (cập nhật giao diện trong trình duyệt)
+Cách hoạt động:
+ - Sau mỗi vòng lặp trong Event Loop, các Macrotask trong hàng đợi (task queue) sẽ được xử lý.
+
+* Microtask là các tác vụ nhỏ hơn, có mức ưu tiên cao hơn so với Macrotask như:
+ - Promises (.then, .catch, .finally)
+ - MutationObserver
+ - queueMicrotask
+Cách hoạt động:
+ - Microtask luôn được ưu tiên xử lý ngay sau khi Call Stack trống, nhưng trước khi Event Loop tiếp tục xử lý Macrotask tiếp theo.
+
