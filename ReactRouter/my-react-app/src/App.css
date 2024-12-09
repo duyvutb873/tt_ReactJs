@@ -28,7 +28,6 @@
   display: flex;
   font-family: 'Work Sans', sans-serif;
   font-weight: 700;
-  /* font-style: italic;  */
   font-size: 30px;
   line-height: 35.19px;
   align-items: center;
@@ -45,15 +44,22 @@
 
 .header_navbar-list:nth-of-type(2) {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   color: #14171F;
   font-family: 'Work Sans', sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 21.11px;
+  gap: 35px;
 }
 
-body {
+
+
+.header_navbar-list:nth-of-type(2) .active {
+  color: #2947A9;
+}
+
+.body {
   margin-top: 80px;
 }
 
@@ -64,24 +70,58 @@ a{
 li{
   list-style-type: none;
 }
-.navbar-list{
-  display: flex;
-  justify-content: space-between;
-  margin: 0;
-  width: 100%;
-  flex-wrap: wrap;
-  /* flex-direction: column; */
-  padding: 0;
-}
-.navbar-item{
-  flex-grow: 1;
-  /* margin: 0 10px; */
-  text-align: center;
-  display: block;
-  margin-bottom: 10px;
-  padding: 15px;
-  background-color: beige;
-  border: 1px solid rgb(45, 39, 32);
-  border-color: rgb(45, 39, 32);
 
+.header_navbar-item2 {
+  position: relative; 
 }
+
+.dropdown-menu {
+  display: none; 
+  position: absolute;
+  top: 100%; 
+  margin-top: 10px;
+  /* left: 20%; */
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  z-index: 1000;
+  width: 200px; 
+  padding: 5px 0; 
+}
+
+
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 12px; 
+  color: black;
+  text-decoration: none;
+  font-size: 16px; 
+  border-bottom: 1px solid #f0f0f0; 
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-menu a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+  color: blue;
+}
+
+.header_navbar-item2:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -15px; 
+  right: 20px; 
+  border-left: 12px solid transparent; 
+  border-right: 12px solid transparent; 
+  border-bottom: 15px solid #f7f7f7; 
+} 

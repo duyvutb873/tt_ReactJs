@@ -1,8 +1,13 @@
 import React from 'react'
-import logo from './logo.svg'
+import { Routes, Route, Navigate, Outlet, useRoutes } from 'react-router-dom'
+
 import './App.css'
 import Header from './Component/week5/Header'
-import { Routes, Route } from 'react-router-dom'
+import Posts from './Pages/Posts'
+import PostDetail from './Pages/PostDetail'
+import Admin from './Pages/Admin'
+import AddUser from './Pages/AddUser'
+import FindUser from './Pages/FindUser'
 
 function App () {
   const Home = () => {
@@ -11,28 +16,43 @@ function App () {
   const AboutUs = () => {
     return <div>About Us</div>
   }
-  const Projects = () => {
-    return <div>Projects</div>
-  }
   const Services = () => {
     return <div>Services</div>
   }
-  const ContactUs = () => {
-    return <div>ContactUs</div>
+  const useAuth = () => {
+    const user = { loggedIn: false }
+    return user && user.loggedIn
   }
+  const ProtectedRoute = () => {
+    console.log('in protected')
+
+    const isAuth = useAuth()
+    return isAuth ? <Outlet /> : <Navigate to='/login' />
+  }
+  const Login = () => <h2>Login Page</h2>
   return (
     <div className='container'>
       <div className='App'>
         <Header />
-        <body>
+        <div className='body'>
           <Routes>
-            <Route path='/home' element={<Home />} />
-            <Route path='/aboutus' element={<AboutUs />} />
-            <Route path='/projects' element={<Projects />} />
+            <Route path='/' element={<Home />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path='/aboutus' element={<AboutUs />} />
+            </Route>
+
+            <Route path='/posts' element={<Posts />} />
             <Route path='/services' element={<Services />} />
-            <Route path='/contactus' element={<ContactUs />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/admin' element={<Admin />}>
+              <Route element={<ProtectedRoute />}>
+                <Route path='/admin/adduser' element={<AddUser />} />
+                <Route path='/admin/finduser' element={<FindUser />} />
+              </Route>
+            </Route>
+            <Route path='/post/:id' element={<PostDetail />} />
           </Routes>
-        </body>
+        </div>
       </div>
     </div>
   )
