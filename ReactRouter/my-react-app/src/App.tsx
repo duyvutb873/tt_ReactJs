@@ -10,6 +10,7 @@ import AddUser from './Pages/AddUser'
 import FindUser from './Pages/FindUser'
 
 function App () {
+
   const Home = () => {
     return <div>Home</div>
   }
@@ -29,6 +30,8 @@ function App () {
     const isAuth = useAuth()
     return isAuth ? <Outlet /> : <Navigate to='/login' />
   }
+  const NotFound: React.FC = () => <h1>404 - Trang không tồn tại!</h1>;
+
   const Login = () => <h2>Login Page</h2>
   return (
     <div className='container'>
@@ -51,6 +54,7 @@ function App () {
               </Route>
             </Route>
             <Route path='/post/:id' element={<PostDetail />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </div>
