@@ -1,68 +1,17 @@
 import React from 'react';
-import { Button, Checkbox, Form, Input } from 'antd';
-import Header from './Component/Header'
+import Header from './Component/Header';
+import LoginForm from './Component/LoginForm';
+import Label from './Component/atoms/Label/Label'
+import CustomInput from './Component/atoms/Input/CustomInput'
 
-const onFinish = (values) => {
-  console.log('Success:', values);
-};
-const onFinishFailed = (errorInfo) => {
-  console.log('Failed:', errorInfo);
-};
 const App = () => (
-  <Header />
-  // <Form
-  //   name="basic"
-  //   labelCol={{
-  //     span: 8,
-  //   }}
-  //   wrapperCol={{
-  //     span: 16,
-  //   }}
-  //   style={{
-  //     maxWidth: 600,
-  //   }}
-  //   initialValues={{
-  //     remember: true,
-  //   }}
-  //   onFinish={onFinish}
-  //   onFinishFailed={onFinishFailed}
-  //   autoComplete="off"
-  // >
-  //   <Form.Item
-  //     label="Username"
-  //     name="username"
-  //     rules={[
-  //       {
-  //         required: true,
-  //         message: 'Please input your username!',
-  //       },
-  //     ]}
-  //   >
-  //     <Input />
-  //   </Form.Item>
-
-  //   <Form.Item
-  //     label="Password"
-  //     name="password"
-  //     rules={[
-  //       {
-  //         required: true,
-  //         message: 'Please input your password!',
-  //       },
-  //     ]}
-  //   >
-  //     <Input.Password />
-  //   </Form.Item>
-
-  //   <Form.Item name="remember" valuePropName="checked" label={null}>
-  //     <Checkbox>Remember me</Checkbox>
-  //   </Form.Item>
-
-  //   <Form.Item label={null}>
-  //     <Button type="primary" htmlType="submit">
-  //       Submit
-  //     </Button>
-  //   </Form.Item>
-  // </Form>
+  <>
+    <Header />
+    <Label label="Email Address" type="title" />
+    <Label label="Password" type="sub-title" />
+    <Label label="Term & Condition" type="sub-title-link" />
+    <CustomInput type="text" label="Email" />
+    <CustomInput type="password" label="Password" />
+  </>
 );
 export default App;
